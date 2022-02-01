@@ -1,0 +1,227 @@
+#kivy !
+
+WindowManager:
+
+    Home:
+    Maker:
+    Add_club:
+    List_club:
+
+<Home>:
+    name: "home"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "HOME"
+            font_size: 25
+        Button:
+            text: "CME"
+            font_size: 25
+            on_release: app.root.current = "maker"
+        Button:
+            text: "CLUBS"
+            font_size: 25
+            on_release: app.root.current = "add_club"
+        Button:
+            text: "LLISTAT"
+            font_size: 25
+            on_release: app.root.current = "list_club"        
+
+<Maker>:
+    name: "maker"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height        
+        
+        Label:
+            text: "NOM"
+        TextInput:
+            id: name
+        Label:
+            text: "DNI"
+        TextInput:
+            id: nif
+            multiline: False
+        Label:
+            text: "CLUB"
+        GridLayout:
+            rows: 1
+            cols: 3                            
+
+            TextInput:
+                id: club 
+                multiline: False          
+            Button:
+                text: "Comprovar"
+                size_hint_x: 0.25
+                on_press:
+                    root.comp(club.text)
+            Label:
+                id: mail
+                text: "MAIL"
+        GridLayout:
+
+            rows: 2
+            cols: 3
+            Label:
+                text: "Dia"
+            Label:
+                text: "Mes"
+            Label:
+                text: "Any"
+            TextInput:
+                id: dia
+
+            TextInput:
+                id: mes
+
+            TextInput
+                id: any
+                
+                
+        GridLayout:
+            rows: 1
+            cols: 3
+            Button:
+                id: submit
+                text: "ENVIAR"
+                size_hint_x: 0.5
+                on_press:
+                    if root.reenv==0:\
+                    root.comp(club.text);                                
+                    root.is_correct(); ## mira si es correcte el mail i l'envia
+                    root.reenv = 1;
+                    
+                                
+            Button:
+
+                id: prev
+                text: "Previa"
+                size_hint_x: 0.25
+                on_press:                    
+                    if root.reenv == 0:\
+                   
+                    root.visualize();
+                    else: \
+                    root.yes();              
+                
+            Button:
+                id: clea
+                size_hint_x: 0.25
+                text: "Clear"
+                on_press:
+                    if root.reenv == 0:\
+                    root.clear();
+                    else: \
+                    root.no();
+        Button:
+            text: "HOME"
+            on_release: app.root.current = "home"
+
+<Add_club>:
+    name: "add_club"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        Label:
+            text: "AFEGIR UN CLUB"
+            size_hint_y: 0.5
+            font_size: 14
+
+        GridLayout:
+            rows: 2
+            cols: 2
+            size: root.width, root.height
+
+            Label:
+                text: "Nom del club"
+            
+            Label:
+                text: "Correu associat"
+            TextInput:
+                id: club_name
+                size_hint_y: 0.5
+
+            TextInput
+                id: club_mail
+                size_hint_y: 0.5
+
+        Button:
+            text: "Submit"
+            size_hint_y: 0.25
+            on_press:
+                ## root.add({club_name.text : club_mail.text})
+                root.add(club_name.text, club_mail.text)
+
+        Label:
+            text: "EDITAR UN CLUB"
+            size_hint_y: 0.5
+            font_size: 14
+
+        GridLayout:
+            rows: 4
+            cols: 2
+            size: root.width, root.height
+
+            Label:
+                text: "Nom del club"
+            
+            Label:
+                text: "Nou correu"
+            
+            TextInput:
+                id: club_name2           
+            
+            TextInput:
+                id: new_mail
+        
+
+        Button:
+            text: "Submit"
+            size_hint_y: 0.25
+
+            on_press:
+                root.update(club_name2.text, new_mail.text)
+
+
+        
+        Button:
+            text: "HOME"
+            size_hint_y: 0.25
+            on_release: app.root.current = "home"
+
+
+<List_club>:
+    name: "list_club"
+    BoxLayout:
+        orientation: "vertical" 
+        GridLayout:  
+            size: root.width, root.height 
+            padding: 10
+            cols: 3
+            rows: 1
+        
+            Button:
+                text:"-"
+                size_hint: (.33,.33)
+                font_size: 30
+                on_press:
+                    root.neg_function()
+            Label:
+                id: list
+                text: ""
+            Button:
+                text: "+"
+                size_hint: (.33,.33)
+                font_size: 30
+                on_press:
+                    root.plus_function()    
+        Button:
+            text: "HOME"
+            size_hint: (1,.2)
+            on_release:
+                app.root.current = "home"
+
+

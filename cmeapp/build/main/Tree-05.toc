@@ -1,0 +1,7 @@
+('C:\\Users\\alber\\Desktop\\ALBERT\\FCF\\APP\\VERSIONS\\vers112\\virt\\share\\glew\\bin',
+ None,
+ [],
+ 'DATA',
+ [('glew32.dll',
+   'C:\\Users\\alber\\Desktop\\ALBERT\\FCF\\APP\\VERSIONS\\vers112\\virt\\share\\glew\\bin\\glew32.dll',
+   'DATA')])
