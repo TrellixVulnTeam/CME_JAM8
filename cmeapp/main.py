@@ -186,7 +186,7 @@ class Maker(Screen):
 
             smtp= SMTP("smtp.gmail.com")
             smtp.starttls()
-            smtp.login(org,"Elvipere1960")
+            smtp.login(org, $PASSWORD) // INSERTAR PASSWORD
             smtp.sendmail(org,dst,msg.as_string())
             smtp.quit()
  
